@@ -1,0 +1,35 @@
+.paid {
+    width: 200px;
+    height: 100px;
+    border: 1px solid green;
+    position: relative;
+    background-color: green;
+  }
+
+  .notPaid{
+    width: 200px;
+    height: 100px;
+    border: 1px solid red;
+    position: relative;
+    background-color: red;
+  }
+
+
+
+  /* for chat */
+
+  .container2 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  .hddi{
+    display: none;
+  }

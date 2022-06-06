@@ -1,0 +1,100 @@
+
+{% extends 'hrms/employee/single.html' %}
+{% load static %}
+{% block page_content %}
+
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">All Previous  Casting<a href="{% url 'hrms:employee_new_arrangement' pk=employee.pk %}"  class="btn btn-sm btn-success mb-3 float-right">Assign New +</a></h4>
+        
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>
+                  Customer
+                </th>
+              <th>
+                Employee
+              </th>
+         
+              <th>
+                  Quantity Of Concrete Cube
+              </th>
+              <th>
+              Location
+              </th> 
+              <th>
+                  date_of_casting
+              </th>                         
+            </tr>
+          </thead>
+          <tbody>
+          {% for casting in concretecasting  %}
+            <tr>
+               
+              <td>
+                  {{casting.customer.name}}
+                </td>
+              <td>
+                {{casting.employee.first_name}} {{casting.employee.last_name}}
+              </td>
+           
+              <td>
+               {{casting.quantity_of_concrete_cube}}
+              </td>
+
+              <td>
+                {{casting.location}}
+               </td>
+               
+              <td>
+                {{casting.date_of_casting}}
+               </td>
+              
+            
+              <td>
+              
+                <div class="btn-group dropdown">
+                  <button type="button" class="btn btn-success dropdown-toggle btn-rounded btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <i class="fa fa-cog "></i> Manage
+                  </button>
+                  <div class="dropdown-menu">
+                    <!-- <a class="dropdown-item" href="{% url 'hrms:cust_view' pk=casting.pk %}">
+                      <i class="fa fa-eye text-success fa-fw"></i>View</a> -->
+                    <a class="dropdown-item" href="{% url 'hrms:employee_update_arrangement' pk=casting.pk %}">
+                      <i class="fa fa-edit text-info fa-fw"></i>Edit</a>
+                    <div class="dropdown-divider"></div> 
+                  </div>
+                </div>                  
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if is_paginated %}
+          <nav aria-label="Page navigation example" class='mt-4'>
+            <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+            {% else %}
+
+              <li class="page-item disabled"><span class='page-link '>Previous</span></li>
+            {% endif %}
+              <li class="disabled"> <span class='page-link'> Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} </span></li>
+            {% if page_obj.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+            {% else %}
+              <li class="page-item disabled"><span class='page-link '>Next</span></li> 
+            {% endif %}                        
+            </ul>
+        </nav>
+        {% endif %}
+    
+      </div>
+    </div>
+  </div>
+</div>                
+
+{% endblock  %}

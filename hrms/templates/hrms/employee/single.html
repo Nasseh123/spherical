@@ -1,0 +1,50 @@
+{% extends 'hrms/layout.html' %}
+{% load static %}
+{% block title %} Employee's Info | HRIS {% endblock title %}
+{% block content %}
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-12 grid-margin">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'hrms:dashboard' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href=" {% url 'hrms:employee_all' %} ">Employee</a> </li>
+                        <li class="breadcrumb-item active" aria-current="page">View</li>
+                    </ol>
+                </nav>
+                    <div class="card" style="margin-bottom: 5px;">
+                        <div class="card-body">
+                           <h4 class="text-center text-primary"><i class="fa fa-address-book-o">&emsp; Employee's Profile</i></h4><hr>  
+                           <div class="d-flex flex-row bd-highlight mb-3">
+                            <div class="p-2 bd-highlight">
+                                <a href="{% url 'hrms:employee_view'  pk=employee.pk %}" class="btn btn-sm btn-success mb-3 float-right">Profile</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <!-- <a href="{% url 'hrms:employee_view'  pk=employee.pk %}" ></a> -->
+                                
+                            <button  type='button' onclick="AdvancePayment('{{employee.user.first_name}}','{{employee.user.id}}')"  class="btn btn-sm btn-success mb-3 float-right">  Advance Payment</button>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a href="{% url 'hrms:employee_new_arrangement' pk=employee.pk %}" class="btn btn-sm btn-success mb-3 float-right">Update arrangement +</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a href="{% url 'hrms:employee_past_arrangement'  pk=employee.pk%}" class="btn btn-sm btn-success mb-3 float-right">Past Work arrangement +</a>
+                            </div> <div class="p-2 bd-highlight">
+                                <a href="{% url 'hrms:all_employee_coupon_pdf'  pk=employee.pk%}" class="btn btn-sm btn-success mb-3 float-right"> Coupon Pdf</a>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <a href="{% url 'hrms:chatroom'  pk=employee.pk%}" class="btn btn-sm btn-success mb-3 float-right"> Requests /Chat</a>
+                            </div>
+                            </div> 
+                           </div>     
+                        </div>
+                    </div>
+<!--  -->{% block page_content %}{% comment %} Filled in by preceeding page templates {% endcomment %}
+        {% endblock %}
+                   
+        </div>
+    </div>
+
+{% endblock content %}

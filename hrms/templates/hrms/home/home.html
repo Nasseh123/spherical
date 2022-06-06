@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href=" {% static 'hrms/css/style.css'%} ">
+    <style>
+        .body-bg{
+           background: #108dc7;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #ef8e38, #108dc7);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ef8e38, #108dc7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        .btn-orange{
+            background: #FDC830;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .btn-selenium{
+            background: #0f0c29;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
+    <title>Home</title>
+</head>
+<body class='body-bg'>
+    <section class="container">
+        <nav class="navbar navbar-light bg-light mt-3 mb-2 ">
+            <h1 class="display-4 mt-2 text-right text-warning">  <a href=" {% url 'hrms:recruitment' %} " class="btn  btn-selenium text-light"> We are Hiring !!! </a>  &emsp; &emsp; &emsp; &emsp; Concrete Pumps 2022</h1> 
+        </nav>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{% static 'hrms/images/cp.jpeg' %}" class='img-fluid' alt="">
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-3 shadow">
+                    <div class="card-header btn-orange pt-4">
+                        <p class="lead"> Abstract</p>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="lead text-justify">
+                            Information and management system for concrete pumps company , is a software or online solution for the data entry, data tracking, and data information needs of the human resources, payroll, management, and accounting functions within a business.
+                            In a simpler form Information and management system for concrete pumps company, is a system that lets you keep track of all your employees and information about them,And also allows employees to contact you and see their arrangements and everything related to work.. It is usually done in a database or, more often, in a series of inter-related databases. 
+                        </p><hr>
+                        <p class="lead text-justify"></p>
+                        <a href=" {% url 'hrms:login' %} " class="btn btn-block btn-selenium text-light"> Administrator &rarr; </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <nav class="navbar navbar-light bg-light ">
+        <p class="display-4 mx-auto bg-light">DEVELOPED BY FATME</p>
+    </nav>
+</body>
+</html>

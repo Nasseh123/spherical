@@ -1,0 +1,89 @@
+
+{% extends 'hrms/employee/single.html' %}
+{% load static %}
+{% block page_content %}
+<style>
+    
+    .container2 {
+      border: 2px solid #dedede;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      /* position: relative; */
+    }
+    
+    .darker {
+      border-color: #ccc;
+      background-color: #ddd;
+    }
+    
+   
+    
+    .time-right {
+      float: right;
+      color: #aaa;
+    }
+    
+    .time-left {
+      float: left;
+      color: #999;
+    }
+    </style>
+<div class="card" >
+    <div class="card-body">
+        
+            <div id="display">
+
+                <div class="card container2 darker">
+                    <b>NO MESSAGES AVAILABLE AT THE MOMENT</b>
+                  </div>
+<!--                   
+                  <div class="card container2 darker">
+                    <b>Tom</b><p>Hello Everyone, How Are You Guys Doing?</p>
+                    <span class="time-left">20th, April 2021</span>
+                  </div> -->
+                
+                </div>
+                <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+                <script>
+                    $(document).ready(function(){
+                    // console.log(';*************************')
+                setInterval(function(){
+                    $.ajax({
+                        type: 'GET',
+                        url : "/getMessages/{{employee.id}}/",
+                        success: function(response){
+                            if(response.messages.length>0){
+                                $("#display").empty();
+                                for (var key in response.messages){
+                                var temp="<div class='card container2 darker'><b>"+response.messages[key].user__first_name+"</b><p>"+response.messages[key].message+"</p><span class='time-left'>"+response.messages[key].date_created+"</span></div>";
+                                $("#display").append(temp);
+                                }
+                            }
+                        },
+                        error: function(response){
+                            console.log('An error occured')
+                        }
+                    });
+                },1000);
+                })
+                </script>
+                <div class="container2">
+                   
+                    <form id="post-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="employee" id="employee" value="{{employee.id}}" />
+                       
+                        <input type="text" name="message" id="message" width="100px" />
+                        <input type="submit" value="Send">
+                    </form>
+                </div>
+  
+    </div>
+</div>
+
+
+
+{% endblock  %}

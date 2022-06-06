@@ -1,0 +1,71 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title  %}{% endblock title %}</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'hrms/vendors/iconfonts/mdi/css/materialdesignicons.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'hrms/vendors/iconfonts/font-awesome/css/font-awesome.css' %} ">
+ 
+  
+  <link rel="stylesheet" href="{% static 'hrms/css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'hrms/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'hrms/css/toastr.min.css' %}">
+  <link rel="shortcut icon" href="{% static 'hrms/images/favicon.png' %}" />
+</head>
+  
+<body>
+  <div class="container-scroller">
+    {% include "hrms/nav.html" %}
+    <div class="container-fluid page-body-wrapper">
+      {% include 'hrms/sidebar.html' %}
+        {% block content %} {% endblock content %}
+        {% include 'hrms/footer.html' %}
+    </div>
+  </div>
+  <!-- plugins:js -->
+  
+  <script src="{% static 'hrms/vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'hrms/vendors/js/vendor.bundle.addons.js' %}"></script>
+  <script src="{% static 'hrms/js/toastr.min.js' %}"></script>
+  <script src="{% static 'hrms/js/sweetalert2@8.js' %}"></script>
+  <script src="{% static 'hrms/js/pay.js' %}"></script>
+  
+  <script src="{% static 'hrms/js/custom.js' %}"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+  $('.no_of_months').click(function(){
+
+    no_of_months = $("#no_of_months option").filter(":selected").val();
+    console.log(no_of_months)
+  $.ajax(
+  {
+      type:"GET",
+      url: "/total_expense",
+      data:{
+          no_of_months: no_of_months
+      },
+      success: function( data ) 
+      {
+        document.getElementById('price_sum').innerHTML =data['price__sum']
+         console.log(data);
+      }
+   })
+});
+</script>
+
+
+  {% block noty %}
+  {% endblock noty %}
+</body>
+
+</html>
